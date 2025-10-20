@@ -1,0 +1,973 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "UDS 3.0 Schema",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "URI identifying the version of the UDS schema used in this document."
+    },
+    "Batch": {
+      "$ref": "#/definitions/Batch"
+    }
+  },
+  "additionalProperties": false,
+  "definitions": {
+    "Batch": {
+      "type": "object",
+      "description": "Top level container for a batch of insurance policy and claim data.",
+      "properties": {
+        "Id": {
+          "type": "integer",
+          "description": "Unique identifier for this batch."
+        },
+        "CreatedOn": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Date and time when the batch was created in ISO-8601 format."
+        },
+        "Message": {
+          "type": "string",
+          "description": "Optional informational message relating to the batch."
+        },
+        "RowCount": {
+          "type": "integer",
+          "description": "Number of data rows contained in this batch."
+        },
+        "InsuranceCompany": {
+          "$ref": "#/definitions/InsuranceCompany"
+        },
+        "GuarantyFund": {
+          "$ref": "#/definitions/GuarantyFund"
+        },
+        "Receiver": {
+          "$ref": "#/definitions/Receiver"
+        },
+        "Data": {
+          "type": "array",
+          "description": "Array of policy records contained in this batch.",
+          "items": {
+            "$ref": "#/definitions/PolicyRecord"
+          }
+        }
+      },
+      "required": [
+        "Id",
+        "CreatedOn",
+        "RowCount",
+        "InsuranceCompany",
+        "GuarantyFund",
+        "Receiver",
+        "Data"
+      ],
+      "additionalProperties": false
+    },
+    "InsuranceCompany": {
+      "type": "object",
+      "description": "Information about the insolvent insurance company.",
+      "properties": {
+        "NAIC": {
+          "type": "string",
+          "description": "NAIC number of the insurance company."
+        },
+        "Name": {
+          "type": "string",
+          "description": "Full legal name of the insurance company."
+        },
+        "DateOfLiquidation": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date",
+          "description": "Date on which the company was placed into liquidation."
+        },
+        "DateOfPolicyCancellation": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date",
+          "description": "Date on which policies issued by the company were cancelled."
+        },
+        "LinesOfBusiness": {
+          "type": "array",
+          "description": "List of lines of business the company wrote before liquidation.",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "NAIC",
+        "Name"
+      ],
+      "additionalProperties": false
+    },
+    "GuarantyFund": {
+      "type": "object",
+      "description": "Information about the guaranty fund responsible for paying covered claims.",
+      "properties": {
+        "Name": {
+          "type": "string",
+          "description": "Name of the guaranty fund."
+        },
+        "Type": {
+          "type": "string",
+          "description": "Type identifier for the guaranty fund."
+        },
+        "State": {
+          "type": "string",
+          "description": "Two-letter state code for the guaranty fund."
+        },
+        "Contact": {
+          "$ref": "#/definitions/GuarantyFundContact"
+        },
+        "Website": {
+          "$ref": "#/definitions/GuarantyFundWebsite"
+        }
+      },
+      "required": [
+        "Name",
+        "Type",
+        "State",
+        "Contact",
+        "Website"
+      ],
+      "additionalProperties": false
+    },
+    "GuarantyFundContact": {
+      "type": "object",
+      "description": "Contact telephone numbers for the guaranty fund.",
+      "properties": {
+        "ClaimQuestions": {
+          "type": "string",
+          "description": "Phone number to call with claim questions."
+        },
+        "ClaimSupervisor": {
+          "type": "string",
+          "description": "Phone number of the claim supervisor."
+        }
+      },
+      "required": [
+        "ClaimQuestions",
+        "ClaimSupervisor"
+      ],
+      "additionalProperties": false
+    },
+    "GuarantyFundWebsite": {
+      "type": "object",
+      "description": "Web links related to the guaranty fund.",
+      "properties": {
+        "HomePage": {
+          "type": "string",
+          "format": "uri",
+          "description": "Home page of the guaranty fund."
+        },
+        "InsolvencyPage": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL for information about insolvencies."
+        }
+      },
+      "required": [
+        "HomePage",
+        "InsolvencyPage"
+      ],
+      "additionalProperties": false
+    },
+    "Receiver": {
+      "type": "object",
+      "description": "Information about the court-appointed receiver handling the liquidation.",
+      "properties": {
+        "Address": {
+          "$ref": "#/definitions/Address"
+        },
+        "Contact": {
+          "$ref": "#/definitions/ReceiverContact"
+        }
+      },
+      "required": [
+        "Address",
+        "Contact"
+      ],
+      "additionalProperties": false
+    },
+    "ReceiverContact": {
+      "type": "object",
+      "description": "Contact information for the receiver.",
+      "properties": {
+        "DataQuestions": {
+          "type": "string",
+          "description": "Phone number or email address for data-related questions."
+        }
+      },
+      "required": [
+        "DataQuestions"
+      ],
+      "additionalProperties": false
+    },
+    "PolicyRecord": {
+      "type": "object",
+      "description": "Information about a single policy and its associated claims.",
+      "properties": {
+        "PolicyNumber": {
+          "type": "string",
+          "description": "Unique policy identifier."
+        },
+        "EffectiveDate": {
+          "type": "string",
+          "format": "date",
+          "description": "Policy effective date."
+        },
+        "ExpirationDate": {
+          "type": "string",
+          "format": "date",
+          "description": "Policy expiration date."
+        },
+        "CancellationDate": {
+          "type": "string",
+          "format": "date",
+          "description": "Policy cancellation effective date."
+        },
+        "CancellationCode": {
+          "type": "string",
+          "description": "Reason code for the cancellation."
+        },
+        "IssuingCompanyCode": {
+          "type": "string",
+          "minLength": 5,
+          "maxLength": 5,
+          "pattern": "^[0-9]{5}$",
+          "description": "NAIC of the insolvent company that issued the policy (5-digit string to preserve leading zeros)."
+        },
+        "Insureds": {
+          "type": "array",
+          "description": "List of named insureds on the policy.",
+          "items": {
+            "$ref": "#/definitions/Insured"
+          }
+        },
+        "Notes": {
+          "type": "array",
+          "description": "Additional textual notes related to the policy.",
+          "items": {
+            "$ref": "#/definitions/Note"
+          }
+        },
+        "Documents": {
+          "type": "array",
+          "description": "Documents associated with the policy.",
+          "items": {
+            "$ref": "#/definitions/Document"
+          }
+        },
+        "ReturnedPremium": {
+          "type": "array",
+          "description": "Return premium entries associated with the policy.",
+          "items": {
+            "$ref": "#/definitions/ReturnPremium"
+          }
+        },
+        "TotalWrittenPremium": {
+          "type": "number",
+          "description": "Total written premium for the policy."
+        },
+        "TotalInForcePremium": {
+          "type": "number",
+          "description": "Total in-force premium at time of cancellation."
+        },
+        "Claims": {
+          "type": "array",
+          "description": "Claims filed against the policy.",
+          "items": {
+            "$ref": "#/definitions/Claim"
+          }
+        }
+      },
+      "required": [
+        "PolicyNumber",
+        "EffectiveDate",
+        "ExpirationDate",
+        "Insureds",
+        "Claims"
+      ],
+      "additionalProperties": false
+    },
+    "Insured": {
+      "type": "object",
+      "description": "Information about an insured person or entity.",
+      "properties": {
+        "Number": {
+          "type": "integer",
+          "description": "Sequence number of the insured on the policy."
+        },
+        "FirstName": {
+          "type": "string",
+          "description": "First name of the insured."
+        },
+        "MiddleName": {
+          "type": "string",
+          "description": "Middle name of the insured."
+        },
+        "LastName": {
+          "type": "string",
+          "description": "Last name of the insured."
+        },
+        "Identification": {
+          "$ref": "#/definitions/Identification"
+        },
+        "Addresses": {
+          "type": "array",
+          "description": "Mailing addresses for the insured.",
+          "items": {
+            "$ref": "#/definitions/Address"
+          }
+        },
+        "Emails": {
+          "type": "array",
+          "description": "Email addresses for the insured.",
+          "items": {
+            "type": "string",
+            "format": "email"
+          }
+        }
+      },
+      "required": [
+        "Number",
+        "FirstName",
+        "LastName",
+        "Addresses"
+      ],
+      "additionalProperties": false
+    },
+    "Coverage": {
+      "type": "object",
+      "description": "Coverage information for a policy or claim.",
+      "properties": {
+        "Code": {
+          "type": "string",
+          "description": "Coverage code."
+        },
+        "Name": {
+          "type": "string",
+          "description": "Coverage description."
+        },
+        "OutstandingReserve": {
+          "type": "number",
+          "description": "Outstanding reserve for this coverage for this claimant."
+        }
+      },
+      "required": [
+        "Code",
+        "Name"
+      ],
+      "additionalProperties": false
+    },
+    "Note": {
+      "type": "object",
+      "description": "A note associated with a policy or claim.",
+      "properties": {
+        "OriginalId": {
+          "type": "integer",
+          "description": "Identifier assigned to this note."
+        },
+        "Text": {
+          "type": "string",
+          "description": "Text of the note."
+        },
+        "CreatedOn": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when the note was created."
+        }
+      },
+      "required": [
+        "OriginalId",
+        "Text",
+        "CreatedOn"
+      ],
+      "additionalProperties": false
+    },
+    "Document": {
+      "type": "object",
+      "description": "Represents a digital document or file.",
+      "properties": {
+        "OriginalId": {
+          "type": "integer",
+          "description": "Identifier assigned to the original document."
+        },
+        "Path": {
+          "type": "string",
+          "description": "URI to the document.",
+          "pattern": "^(https?|file|s?ftp|ftps):\/\/"
+        },
+        "Description": {
+          "type": "string",
+          "description": "Human friendly description of the document."
+        },
+        "CreatedOn": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when the document was created or uploaded."
+        },
+        "Tags": {
+          "type": "array",
+          "description": "Arbitrary labels associated with the document.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "Fingerprint": {
+          "type": "string",
+          "description": "Hash or fingerprint of the document for integrity verification."
+        },
+        "PageNumber": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Page number within a multi-page source, if applicable."
+        }
+      },
+      "required": [
+        "Path"
+      ],
+      "additionalProperties": false
+    },
+    "ReturnPremium": {
+      "type": "object",
+      "description": "Represents a returned premium transaction on a cancelled policy.",
+      "properties": {
+        "Insured": {
+          "$ref": "#/definitions/Insured"
+        },
+        "Coverage": {
+          "$ref": "#/definitions/Coverage"
+        },
+        "FinalAuditIndicator": {
+          "type": "string",
+          "description": "Indicator whether the final audit has been completed."
+        },
+        "TransactionCode": {
+          "type": "string",
+          "description": "Transaction code."
+        },
+        "ReturnPremiumAmount": {
+          "type": "number",
+          "description": "Amount of premium returned to the insured."
+        },
+        "UnpaidPremiumAmount": {
+          "type": "number",
+          "description": "Amount of premium that remains unpaid."
+        },
+        "Claimant": {
+          "$ref": "#/definitions/Claimant"
+        }
+      },
+      "required": [
+        "Insured",
+        "Coverage",
+        "FinalAuditIndicator",
+        "TransactionCode",
+        "ReturnPremiumAmount",
+        "UnpaidPremiumAmount",
+        "Claimant"
+      ],
+      "additionalProperties": false
+    },
+    "Claim": {
+      "type": "object",
+      "description": "Information about a claim made against a policy.",
+      "properties": {
+        "Number": {
+          "type": "string",
+          "description": "Claim number assigned by the insurer or guaranty fund."
+        },
+        "ReceiverNumber": {
+          "type": "string",
+          "description": "Number assigned by the receiver, if any."
+        },
+        "TransactionAmount": {
+          "type": "number",
+          "description": "Most recent transaction amount on the claim."
+        },
+        "TransactionCode": {
+          "type": "string",
+          "description": "Code classifying the type of transaction."
+        },
+        "Claimants": {
+          "type": "array",
+          "description": "Individuals making this claim.",
+          "items": {
+            "$ref": "#/definitions/Claimant"
+          }
+        },
+        "DateOfLoss": {
+          "type": "string",
+          "format": "date",
+          "description": "Date of loss associated with the claim."
+        },
+        "ReportDate": {
+          "type": "string",
+          "format": "date",
+          "description": "Date the claim was reported."
+        },
+        "Suits": {
+          "type": "array",
+          "description": "Court actions filed in relation to the claim.",
+          "items": {
+            "$ref": "#/definitions/Suit"
+          }
+        },
+        "Catastrophe": {
+          "$ref": "#/definitions/Catastrophe"
+        },
+        "Notes": {
+          "type": "array",
+          "description": "Additional notes on the claim.",
+          "items": {
+            "$ref": "#/definitions/Note"
+          }
+        },
+        "RecoveryIndicatorCode": {
+          "type": "string",
+          "description": "Code indicating recovery status on the claim."
+        },
+        "SecondInjuryFundIndicator": {
+          "type": "string",
+          "description": "Indicator whether the claim involves a second injury fund."
+        },
+        "TPAClaimNumber": {
+          "type": "string",
+          "description": "Third party administrator claim number."
+        },
+        "RepetitivePaymentIndicator": {
+          "type": "string",
+          "description": "Indicator if the claim involves repetitive payments."
+        },
+        "AggregatePolicyIndicator": {
+          "type": "string",
+          "description": "Indicator whether the claim is aggregated under the policy."
+        },
+        "DeductiblePolicyIndicator": {
+          "type": "string",
+          "description": "Indicator whether the policy includes a deductible."
+        },
+        "WorkersCompensation": {
+          "$ref": "#/definitions/WorkersCompensation"
+        },
+        "Documents": {
+          "type": "array",
+          "description": "Documents associated with the claim.",
+          "items": {
+            "$ref": "#/definitions/Document"
+          }
+        },
+        "ServicingOfficeCode": {
+          "type": "string",
+          "maxLength": 6,
+          "description": "Receiver-defined code for the TPA or branch office that serviced this claim (up to 6 characters)."
+        }
+      },
+      "required": [
+        "Number",
+        "TransactionCode",
+        "Claimants",
+        "DateOfLoss",
+        "ReportDate",
+        "WorkersCompensation"
+      ],
+      "additionalProperties": false
+    },
+    "Claimant": {
+      "type": "object",
+      "description": "An individual claimant on a claim.",
+      "properties": {
+        "Number": {
+          "type": "integer",
+          "description": "Sequence number of the claimant on the claim."
+        },
+        "FirstName": {
+          "type": "string",
+          "description": "First name of the claimant."
+        },
+        "MiddleName": {
+          "type": "string",
+          "description": "Middle name of the claimant"
+        },
+        "LastName": {
+          "type": "string",
+          "description": "Last name of the claimant."
+        },
+        "BirthDate": {
+          "type": "string",
+          "format": "date",
+          "description": "Birth date of the claimant."
+        },
+        "Coverages": {
+          "type": "array",
+          "description": "Coverage types applicable to the policy.",
+          "items": {
+            "$ref": "#/definitions/Coverage"
+          }
+        },
+        "Addresses": {
+          "type": "array",
+          "description": "Mailing addresses for the claimant.",
+          "items": {
+            "$ref": "#/definitions/Address"
+          }
+        },
+        "Emails": {
+          "type": "array",
+          "description": "Email addresses for the claimant.",
+          "items": {
+            "type": "string",
+            "format": "email"
+          }
+        },
+        "Notes": {
+          "type": "array",
+          "description": "Notes associated with the claimant.",
+          "items": {
+            "$ref": "#/definitions/Note"
+          }
+        },
+        "Documents": {
+          "type": "array",
+          "description": "Documents related to the claimant.",
+          "items": {
+            "$ref": "#/definitions/Document"
+          }
+        },
+        "Payments": {
+          "type": "array",
+          "description": "Payments made to the claimant.",
+          "items": {
+            "$ref": "#/definitions/Payment"
+          }
+        },
+        "Identification": {
+          "$ref": "#/definitions/Identification"
+        },
+        "CMS": {
+          "type": "string",
+          "description": "Long-form Medicare/CMS details (e.g., conditional payments, lien info, case notes)."
+        }
+      },
+      "required": [
+        "Number",
+        "FirstName",
+        "LastName",
+        "Addresses"
+      ],
+      "additionalProperties": false
+    },
+    "Payment": {
+      "type": "object",
+      "description": "Information about a payment issued under a claim.",
+      "properties": {
+        "Payee": {
+          "$ref": "#/definitions/Payee"
+        },
+        "CheckNumber": {
+          "type": "string",
+          "description": "Number of the issued check."
+        },
+        "InvoiceNumber": {
+          "type": "string",
+          "description": "Invoice number associated with the payment."
+        },
+        "Comment": {
+          "type": "string",
+          "description": "Additional comments regarding the payment."
+        },
+        "Coverage": {
+          "$ref": "#/definitions/Coverage"
+        },
+        "Type": {
+          "$ref": "#/definitions/PaymentType"
+        },
+        "CheckDate": {
+          "type": "string",
+          "format": "date",
+          "description": "Date the check was issued."
+        },
+        "CheckAmount": {
+          "type": "number",
+          "description": "Monetary amount of the issued check."
+        },
+        "ServiceOrBenefitFromDate": {
+          "type": "string",
+          "format": "date",
+          "description": "Start date for services or benefits covered by this payment."
+        },
+        "ServiceOrBenefitToDate": {
+          "type": "string",
+          "format": "date",
+          "description": "End date for services or benefits covered by this payment."
+        }
+      },
+      "required": [
+        "Payee",
+        "CheckNumber",
+        "Coverage",
+        "Type"
+      ],
+      "additionalProperties": false
+    },
+    "Payee": {
+      "type": "object",
+      "description": "Payee information for a payment.",
+      "properties": {
+        "NameLine1": {
+          "type": "string",
+          "description": "First line of the payee 's name."
+        },
+        "NameLine2": {
+          "type": "string",
+          "description": "Second line of the payee 's name."
+        },
+        "Identification": {
+          "$ref": "#/definitions/Identification"
+        }
+      },
+      "required": [
+        "NameLine1",
+        "NameLine2",
+        "Identification"
+      ],
+      "additionalProperties": false
+    },
+    "PaymentType": {
+      "type": "object",
+      "description": "Type information for a payment.",
+      "properties": {
+        "Code": {
+          "type": "string",
+          "description": "Code representing the type of payment."
+        },
+        "Name": {
+          "type": "string",
+          "description": "Human friendly description of the payment type."
+        }
+      },
+      "required": [
+        "Code",
+        "Name"
+      ],
+      "additionalProperties": false
+    },
+    "Suit": {
+      "type": "object",
+      "description": "Information about a lawsuit or litigation associated with a claim.",
+      "properties": {
+        "LawFirm": {
+          "type": "string",
+          "description": "Name of the law firm handling the suit."
+        },
+        "Contact": {
+          "type": "string",
+          "description": "Contact details (phone or email) for the law firm."
+        }
+      },
+      "required": [
+        "LawFirm",
+        "Contact"
+      ],
+      "additionalProperties": false
+    },
+    "Catastrophe": {
+      "type": "object",
+      "description": "Information about a catastrophe event associated with a claim.",
+      "properties": {
+        "Code": {
+          "type": "string",
+          "description": "Catastrophe code."
+        },
+        "Name": {
+          "type": "string",
+          "description": "Name of the catastrophe."
+        }
+      },
+      "required": [
+        "Code",
+        "Name"
+      ],
+      "additionalProperties": false
+    },
+    "WorkersCompensation": {
+      "type": "object",
+      "description": "Workers compensation claim details. Fields may be blank when not applicable.",
+      "properties": {
+        "InjuryCode": {
+          "type": "string",
+          "description": "Code describing the injury."
+        },
+        "PartOfBody": {
+          "type": "string",
+          "description": "Part of the body injured."
+        },
+        "NatureOfInjury": {
+          "type": "string",
+          "description": "Nature of the injury sustained."
+        },
+        "Cause": {
+          "type": "string",
+          "description": "Cause of the injury."
+        },
+        "Act": {
+          "type": "string",
+          "description": "Statutory act under which benefits are provided."
+        },
+        "TypeOfLoss": {
+          "type": "string",
+          "description": "Type of loss for the workers compensation claim."
+        },
+        "TypeOfRecovery": {
+          "type": "string",
+          "description": "Type of recovery sought."
+        },
+        "TypeOfCoverage": {
+          "type": "string",
+          "description": "Type of coverage under the workers compensation policy."
+        },
+        "TypeOfSettlement": {
+          "type": "string",
+          "description": "Type of settlement reached."
+        },
+        "VocationalRehabIndicator": {
+          "type": "string",
+          "description": "Indicator if vocational rehabilitation applies."
+        },
+        "DescriptionOfInjury": {
+          "type": "string",
+          "description": "Narrative description of the injury."
+        },
+        "WCABNumber": {
+          "type": "string",
+          "description": "Workers' compensation appeals board number."
+        },
+        "Employer": {
+          "$ref": "#/definitions/Employer"
+        }
+      },
+      "required": [
+        "Employer"
+      ],
+      "additionalProperties": false
+    },
+    "Employer": {
+      "type": "object",
+      "description": "Employer information for a workers compensation claim.",
+      "properties": {
+        "PhoneNumber": {
+          "type": "string",
+          "description": "Employer phone number."
+        },
+        "Email": {
+          "type": "string",
+          "description": "Employer email address.  Optional and may be left blank."
+        },
+        "Addresses": {
+          "type": "array",
+          "description": "Mailing addresses for the employer.",
+          "items": {
+            "$ref": "#/definitions/Address"
+          }
+        }
+      },
+      "required": [
+        "Addresses"
+      ],
+      "additionalProperties": false
+    },
+    "Address": {
+      "type": "object",
+      "description": "Standard mailing address.",
+      "properties": {
+        "Type": {
+          "type": "string",
+          "description": "Address type (e.g. Primary, Secondary)."
+        },
+        "Line1": {
+          "type": "string",
+          "description": "First line of the street address."
+        },
+        "Line2": {
+          "type": "string",
+          "description": "Second line of the street address."
+        },
+        "City": {
+          "type": "string",
+          "description": "City name."
+        },
+        "State": {
+          "type": "string",
+          "description": "State or province code."
+        },
+        "ZipCode": {
+          "type": "string",
+          "description": "Postal or ZIP code."
+        },
+        "Country": {
+          "type": "string",
+          "description": "Country code."
+        }
+      },
+      "required": [
+        "Line1",
+        "City",
+        "State",
+        "ZipCode",
+        "Country"
+      ],
+      "additionalProperties": false
+    },
+    "SimplePersonWithAddress": {
+      "type": "object",
+      "description": "Simplified person object used for payee or insured names with address.",
+      "properties": {
+        "Name1": {
+          "type": "string",
+          "description": "First line of the person 's name."
+        },
+        "Name2": {
+          "type": "string",
+          "description": "Second line of the person 's name."
+        },
+        "Address": {
+          "$ref": "#/definitions/Address"
+        }
+      },
+      "required": [
+        "Name1",
+        "Name2",
+        "Address"
+      ],
+      "additionalProperties": false
+    },
+    "Identification": {
+      "type": "object",
+      "description": "Government identification",
+      "properties": {
+        "SSN": {
+          "type": "string",
+          "description": "Individual Social Security Number"
+        },
+        "EIN": {
+          "type": "string",
+          "description": "Employer Identification Number"
+        },
+        "DLN": {
+          "type": "string",
+          "description": "Driver's License Number"
+        }
+      }
+    }
+  },
+  "Claims": [],
+  "GuarantyFund": {},
+  "InsolventCompany": {},
+  "Policy": {},
+  "Receiver": {}
+}

@@ -1,0 +1,406 @@
+{
+  "$schema": "https://gsicdn.blob.core.windows.net/uds/uds3.0-schema.json",
+  "Batch": {
+    "Id": 1,
+    "CreatedOn": "2025-08-13T17:25:31Z",
+    "Message": "",
+    "RowCount": 1,
+    "InsuranceCompany": {
+      "NAIC": "55555",
+      "Name": "TESTLIQ",
+      "DateOfLiquidation": null,
+      "DateOfPolicyCancellation": null,
+      "LinesOfBusiness": [
+        "P&C"
+      ]
+    },
+    "GuarantyFund": {
+      "Name": "Illinois",
+      "Type": "P&C",
+      "State": "IL",
+      "Contact": {
+        "ClaimQuestions": "",
+        "ClaimSupervisor": ""
+      },
+      "Website": {
+        "HomePage": "https://www.ncigf.org/",
+        "InsolvencyPage": "https://www.ncigf.org/resources/uds/uds-claims-manual/"
+      }
+    },
+    "Receiver": {
+      "Address": {
+        "Type": "Primary",
+        "Line1": "1600 Pennsylvania Avenue NW",
+        "Line2": "",
+        "City": "Washington",
+        "State": "DC",
+        "ZipCode": "20500",
+        "Country": "US"
+      },
+      "Contact": {
+        "DataQuestions": ""
+      }
+    },
+    "Data": [
+      {
+        "PolicyNumber": "POL123456",
+        "EffectiveDate": "2022-05-07",
+        "ExpirationDate": "2022-11-07",
+        "IssuingCompanyCode": "44725",
+        "CancellationDate": "2022-11-01",
+        "Insureds": [
+          {
+            "Number": 1,
+            "FirstName": "John",
+            "LastName": "Doe",
+            "Addresses": [
+              {
+                "Type": "Primary",
+                "Line1": "123 Main Street",
+                "Line2": "Apt 4B",
+                "City": "Springfield",
+                "State": "ZZ",
+                "ZipCode": "99999",
+                "Country": "US"
+              },
+              {
+                "Type": "Secondary",
+                "Line1": "456 Elm Street",
+                "Line2": "Apt 2A",
+                "City": "Springfield",
+                "State": "ZZ",
+                "ZipCode": "99999",
+                "Country": "US"
+              }
+            ],
+            "Emails": [
+              "john.doe@example.com"
+            ],
+            "Identification": {
+              "SSN": "123-45-6789"
+            }
+          },
+          {
+            "Number": 2,
+            "FirstName": "Jane",
+            "LastName": "Doe",
+            "Addresses": [
+              {
+                "Type": "Primary",
+                "Line1": "123 Main Street",
+                "Line2": "Apt 4B",
+                "City": "Springfield",
+                "State": "ZZ",
+                "ZipCode": "99999",
+                "Country": "US"
+              }
+            ],
+            "Emails": [
+              "jane.doe@example.com"
+            ],
+            "Identification": {
+              "SSN": "123-45-9876"
+            }
+          }
+        ],
+        "Notes": [
+          {
+            "OriginalId": 101,
+            "Text": "Policy imported from legacy system.",
+            "CreatedOn": "2022-05-07T08:00:00Z"
+          },
+          {
+            "OriginalId": 102,
+            "Text": "Cancellation notice issued.",
+            "CreatedOn": "2022-10-15T12:30:00Z"
+          }
+        ],
+        "Documents": [
+          {
+            "OriginalId": 201,
+            "Path": "https://www.suds.blob.core.window.net/55555/Images/policy_declarations_POL123456.pdf",
+            "Description": "Policy Declarations",
+            "CreatedOn": "2022-05-07T09:00:00Z",
+            "PageNumber": 1,
+            "Tags": ["Declarations", "Policy"],
+            "Fingerprint": "decf00ddecf00ddecf00d"
+          },
+          {
+            "OriginalId": 202,
+            "Path": "https://www.suds.blob.core.window.net/55555/Images/policy_cancellation_notice_POL123456.pdf",
+            "Description": "Policy Cancellation Notice",
+            "CreatedOn": "2022-10-15T12:35:00Z",
+            "PageNumber": 1,
+            "Tags": ["Cancellation", "Policy"],
+            "Fingerprint": "cafebabecafebabecafeba"
+          }
+        ],
+        "ReturnedPremium": [
+          {
+            "Insured": {
+              "Number": 1,
+              "FirstName": "John",
+              "LastName": "Doe",
+              "Addresses": [
+                {
+                  "Type": "Mailing",
+                  "Line1": "123 Main Street",
+                  "Line2": "Apt 4B",
+                  "City": "Springfield",
+                  "State": "ZZ",
+                  "ZipCode": "99999",
+                  "Country": "US"
+                }
+              ],
+              "Emails": []
+            },
+            "Coverage": {
+              "Code": "935005",
+              "Name": "Automobile"
+            },
+            "FinalAuditIndicator": "Y",
+            "TransactionCode": "820",
+            "ReturnPremiumAmount": 200.0,
+            "UnpaidPremiumAmount": 0.0,
+            "Claimant": {
+              "Number": 1,
+              "FirstName": "Jane",
+              "LastName": "Smith",
+              "Addresses": [
+                {
+                  "Type": "Mailing",
+                  "Line1": "456 Oak Avenue",
+                  "Line2": "",
+                  "City": "Shelbyville",
+                  "State": "YY",
+                  "ZipCode": "88888",
+                  "Country": "US"
+                }
+              ],
+              "Emails": []
+            }
+          }
+        ],
+        "TotalWrittenPremium": 0.0,
+        "TotalInForcePremium": 0.0,
+        "Claims": [
+          {
+            "Number": "CLM987654",
+            "ReceiverNumber": "987654",
+            "ServicingOfficeCode": "1",
+            "TransactionAmount": 25038.95,
+            "TransactionCode": "100",
+            "Claimants": [
+              {
+                "Number": 1,
+                "FirstName": "Jane",
+                "LastName": "Smith",
+                "BirthDate": "1990-01-01",
+                "Coverages": [
+                  {
+                    "Code": "785005",
+                    "Name": "Liability - Bodily Injury - Combined Single Or Split Limit"
+                  }
+                ],
+                "Addresses": [
+                  {
+                    "Type": "Primary",
+                    "Line1": "789 Pine Road",
+                    "Line2": "",
+                    "City": "Capital City",
+                    "State": "XX",
+                    "ZipCode": "77777",
+                    "Country": "US"
+                  }
+                ],
+                "Emails": [
+                  "jane.smith@example.com"
+                ],
+                "Notes": [
+                  {
+                    "OriginalId": 1,
+                    "Text": "TaskCompleted: New Claim assignment for John Doe",
+                    "CreatedOn": "2022-08-26T00:00:00Z"
+                  },
+                  {
+                    "OriginalId": 1,
+                    "Text": "TaskCompleted: 90-day review reminder",
+                    "CreatedOn": "2023-01-20T00:00:00Z"
+                  },
+                  {
+                    "OriginalId": 1,
+                    "Text": "TaskCompleted: Follow-up for John Doe",
+                    "CreatedOn": "2023-03-14T00:00:00Z"
+                  },
+                  {
+                    "OriginalId": 1,
+                    "Text": "Transaction Comments - Payment issued to Jane Smith",
+                    "CreatedOn": "2023-03-16T00:00:00Z"
+                  },
+                  {
+                    "OriginalId": 1,
+                    "Text": "TaskCompleted: Medicare updates needed",
+                    "CreatedOn": "2023-08-30T00:00:00Z"
+                  }
+                ],
+                "Documents": [
+                  {
+                    "OriginalId": 0,
+                    "Path": "https://www.suds.blob.core.window.net/55555/Images/sample1.pdf",
+                    "Description": "Sample Document 1",
+                    "CreatedOn": "2023-11-30T00:00:00Z",
+                    "PageNumber": 0,
+                    "Tags": [
+                      "Document",
+                      "Policy Data"
+                    ],
+                    "Fingerprint": "a1b2c3d4e5f6g7h8i9j0"
+                  },
+                  {
+                    "OriginalId": 1,
+                    "Path": "https://www.suds.blob.core.window.net/55555/Images/sample2.pdf",
+                    "Description": "Sample Document 2",
+                    "CreatedOn": "2023-12-13T00:00:00Z",
+                    "PageNumber": 2,
+                    "Tags": [
+                      "Declarations Document"
+                    ],
+                    "Fingerprint": "b1c2d3e4f5g6h7i8j9k0"
+                  }
+                ],
+                "Payments": [
+                  {
+                    "Payee": {
+                      "NameLine1": "Mark",
+                      "NameLine2": "Johnson",
+                      "Identification": {}
+                    },
+                    "CheckNumber": "CHK123456",
+                    "CheckDate": "2023-09-06",
+                    "CheckAmount": 47.55,
+                    "InvoiceNumber": "INV1001",
+                    "Comment": "Payment for services",
+                    "Coverage": {
+                      "Code": "785005",
+                      "Name": "Liability - Bodily Injury - Combined Single Or Split Limit"
+                    },
+                    "Type": {
+                      "Code": "310",
+                      "Name": "Loss claim payment"
+                    },
+                    "ServiceOrBenefitFromDate": "2012-12-20",
+                    "ServiceOrBenefitToDate": "2013-12-20"
+                  },
+                  {
+                    "Payee": {
+                      "NameLine1": "Alice",
+                      "NameLine2": "Brown",
+                      "Identification": {
+                        "SSN": "123-45-6789"
+                      }
+                    },
+                    "CheckNumber": "CHK987654",
+                    "CheckDate": "2023-09-11",
+                    "CheckAmount": 111.05,
+                    "InvoiceNumber": "INV2002",
+                    "Comment": "Repair reimbursement",
+                    "Coverage": {
+                      "Code": "785005",
+                      "Name": "Liability - Bodily Injury - Combined Single Or Split Limit"
+                    },
+                    "Type": {
+                      "Code": "310",
+                      "Name": "Loss claim payment"
+                    },
+                    "ServiceOrBenefitFromDate": "2012-12-20",
+                    "ServiceOrBenefitToDate": "2013-12-20"
+                  }
+                ],
+                "CMS": "Some Sample CMS would be found here"
+              }
+            ],
+            "DateOfLoss": "2022-08-23",
+            "ReportDate": "1901-01-01",
+            "Suits": [
+              {
+                "LawFirm": "Nate Jennings Legal, LLC",
+                "Contact": "njennings@ncigf.org"
+              }
+            ],
+            "Catastrophe": {
+              "Code": "42",
+              "Name": "Hurricane Nate"
+            },
+            "Notes": [
+              {
+                "OriginalId": 301,
+                "Text": "Initial claim intake completed.",
+                "CreatedOn": "2022-08-24T15:45:00Z"
+              },
+              {
+                "OriginalId": 302,
+                "Text": "Demand letter received from claimant counsel.",
+                "CreatedOn": "2022-10-05T10:15:00Z"
+              }
+            ],
+            "Documents": [
+              {
+                "OriginalId": 401,
+                "Path": "https://www.suds.blob.core.window.net/55555/Images/claim_loss_report_CLM987654.pdf",
+                "Description": "Loss Report",
+                "CreatedOn": "2022-08-24T16:00:00Z",
+                "PageNumber": 1,
+                "Tags": ["Claim", "Loss Report"],
+                "Fingerprint": "feedfacefeedfacefeedfa"
+              },
+              {
+                "OriginalId": 402,
+                "Path": "https://www.suds.blob.core.window.net/55555/Images/claim_correspondence_2023-09-01_CLM987654.pdf",
+                "Description": "Correspondence from claimant counsel",
+                "CreatedOn": "2023-09-01T09:20:00Z",
+                "PageNumber": 1,
+                "Tags": ["Claim", "Correspondence"],
+                "Fingerprint": "deadbeefdeadbeefdeadbe"
+              }
+            ],
+            "RecoveryIndicatorCode": "8",
+            "SecondInjuryFundIndicator": "U",
+            "TPAClaimNumber": "TPA123456",
+            "RepetitivePaymentIndicator": "N",
+            "AggregatePolicyIndicator": "U",
+            "DeductiblePolicyIndicator": "Y",
+            "WorkersCompensation": {
+              "InjuryCode": "01",
+              "PartOfBody": "12",
+              "NatureOfInjury": "75",
+              "Cause": "02",
+              "Act": "04",
+              "TypeOfLoss": "02",
+              "TypeOfRecovery": "01",
+              "TypeOfCoverage": "01",
+              "TypeOfSettlement": "00",
+              "VocationalRehabIndicator": "U",
+              "DescriptionOfInjury": "Slip and fall injury to hand",
+              "WCABNumber": "WCAB123",
+              "Employer": {
+                "PhoneNumber": "5551234567",
+                "Email": "employer@example.com",
+                "Addresses": [
+                  {
+                    "Type": "Primary",
+                    "Line1": "321 Corporate Blvd",
+                    "Line2": "",
+                    "City": "Metropolis",
+                    "State": "WW",
+                    "ZipCode": "66666",
+                    "Country": "US"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
