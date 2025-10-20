@@ -126,7 +126,7 @@ Your feedback is essential to making UDS 3.0 a practical and effective standard 
 
 **GitHub Issues** (Preferred): Open an issue in this repository to discuss problems, propose enhancements, or ask questions about the specification. Public issues encourage collaboration and ensure others facing similar challenges can benefit from the discussion.
 
-**Pull Requests** (Preferred): If you have a specific change to propose for the schema, submit a pull request with your modifications. This allows for detailed technical review and discussion of the implementation.
+**Pull Requests** (Preferred): If you have a specific change to propose for the schema, fork this repository and submit a pull request with your modifications. This allows for detailed technical review and discussion of the implementation. See [GitHub's guide on creating a pull request from a fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork) if you're new to this workflow.
 
 **Direct Email**: You may also reach out directly to Nate Jennings, Software Engineering Manager at NCIGF, at [njennings@ncigf.org](mailto:njennings@ncigf.org). However, we strongly encourage using GitHub issues or pull requests when possible to foster public participation and collaborative problem-solving.
 
