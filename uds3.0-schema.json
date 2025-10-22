@@ -964,10 +964,5 @@
         }
       }
     }
-  },
-  "Claims": [],
-  "GuarantyFund": {},
-  "InsolventCompany": {},
-  "Policy": {},
-  "Receiver": {}
+  }
 }
